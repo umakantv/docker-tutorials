@@ -20,3 +20,8 @@ Use `docker-compose up` to get the server running.
 ## Running tests
 1. One way to run tests is to run the container with docker-compose and then using `docker exec -it <container id> npm run tests` command. The downside for this is that we have to run `docker ps` to get the id. But we can use the different commands provided to us to manipulate the tests.
 2. The other way is to create another service in docker-compose by providing a `command: ["npm", "run", "test"]`. But there is no way to manage tests manually.
+
+## Building and hosting with nginx
+React project on build spits out static files that we can server using a http server, in our case nginx. Earlier the hosting was handled by react development server itself.  
+So we need to have a multi-step build configuration to build and host our project.  
+We created a `Dockerfile` with these configuration. Note that all the files related to building will be dropped by docker once we copy the files from the previous build stage using `--from builder` flag.
