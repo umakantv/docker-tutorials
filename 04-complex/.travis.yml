@@ -3,12 +3,16 @@ services:
   - docker
 
 before_install:
+  # Only build the image from Dockerfile.dev file for testing
   - docker build -t umakantv/react-test -f ./client/Dockerfile.dev ./client
 
 script:
+  # Test the built image
   - docker run -e CI=true umakantv/react-test npm run test
 
 after_success:
+  # Build the production images
+  # When we run these images, we nee
   - docker build -t umakantv/multi-react ./client
   - docker build -t umakantv/multi-nginx ./nginx
   - docker build -t umakantv/multi-server ./server

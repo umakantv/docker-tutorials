@@ -15,6 +15,7 @@ services:
       context: ./nginx
       dockerfile: Dockerfile.dev
     ports: 
+      # Outside:Inside
       - "3050:80"
   api:
     restart: always
@@ -22,7 +23,11 @@ services:
       context: ./server
       dockerfile: Dockerfile.dev
     volumes:
+      # Inside the container, don't override, don't redirect, leave the folder as it it
       - /app/node_modules
+      # Inside the container, if application tries to access any file inside the app directory
+      # Redirect that to server folder in this directory outside the container
+      # This is useful for 
       - ./server:/app
     environment:
       - REDIS_HOST=redis
