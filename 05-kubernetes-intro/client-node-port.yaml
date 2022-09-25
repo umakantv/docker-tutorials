@@ -1,0 +1,14 @@
+# Each API version defines different set of object configuration we can use 
+# v1 defines objects like Pod, Service, Event, Endpoint, Namespace
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-node-port
+spec:
+  type: NodePort
+  ports:
+  - port: 3050
+    targetPort: 3000
+    nodePort: 31515
+  selector:
+    app: web

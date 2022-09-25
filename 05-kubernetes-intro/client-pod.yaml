@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client-pod
+  labels:
+    # We can give our own labels, These labels can be used in other config files under selector
+    # component can very easily be replaced with any other label such as app
+    component: web
+spec:
+  containers:
+  # We define containers that this pod will be running
+  - name: client
+    image: stephengrider/multi-client
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      # List of ports to expose from the container. Primarily information only, 
+      # Not specifying a port here DOES NOT prevent that port from being exposed
+      - containerPort: 3000
