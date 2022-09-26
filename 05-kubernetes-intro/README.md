@@ -60,3 +60,11 @@ Pod is a collection of containers that can run on a host. This resource is creat
 
     `kubectl logs <pod-id>`  
     `kubectl logs -f <pod-id>` will get live logs
+
+7. Updating Image for deployment
+
+    ```
+    kubectl set image <object-type>/<object-name> <container-name>=<image-name-with-tag>
+    
+    kubectl set image deployments/api-deployment api-deployment=<image-name-with-tag>
+    ```  
