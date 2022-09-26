@@ -23,3 +23,40 @@ Nodes are worker machines in k8s which might be a virtual machine or an actual m
 Pods are units in k8s that run one or more similar purpose containers. Usually we run one container in each pod, unless multiple containers are very tightly coupled and need to run together in the same pod.  
 Pod is a collection of containers that can run on a host. This resource is created by clients and scheduled onto hosts.
 
+## What is Deployment
+
+## Commands
+
+1. Getting Objects
+
+   * Get Pods  
+   `kubectl get pods`  
+   `kubectl get pods -o wide` for more options
+   
+   * Get Services  
+   `kubectl get services`  
+
+2. Creating Objects
+
+    * We need to create a yaml file for each type of object having its own syntax.
+    
+    * Then we can apply these files using  
+    `kubectl apply -f <file-name>`  
+
+3. Getting details description
+
+    `kubectl describe pods <pod-id>`  
+    `kubectl describe services <service-id>`
+
+4. Deleting objects
+
+    `kubectl delete -f <file-name>`
+
+5. Exec into pods
+
+    `kubectl exec -it <pod-id> sh`  
+
+6. Getting logs from pod
+
+    `kubectl logs <pod-id>`  
+    `kubectl logs -f <pod-id>` will get live logs

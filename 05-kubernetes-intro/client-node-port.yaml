@@ -3,12 +3,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: client-node-port
+  name: api-node-port
 spec:
   type: NodePort
   ports:
-  - port: 3050
-    targetPort: 3000
-    nodePort: 31515
+  - port: 3050 # to be used by other services in the node
+    targetPort: 8080 # container port where the traffic will be routed to
+    nodePort: 31515 # port outside the node, to be used from browser
   selector:
-    app: web
+    component: api
